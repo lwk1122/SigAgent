@@ -1,0 +1,6 @@
+# Core scientific stack used by signature_decision and paper artifact scripts.
+numpy>=1.26
+pandas>=2.1
+scipy>=1.13
+scikit-learn>=1.2
+matplotlib>=3.8

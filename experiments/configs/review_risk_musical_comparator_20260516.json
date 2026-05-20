@@ -1,0 +1,36 @@
+{
+  "suite_name": "review_risk_musical_comparator_20260516",
+  "output_root": "results/paper/review_risk_musical_comparator_20260516",
+  "steps": [
+    {
+      "name": "known_sbs96_plain_musical",
+      "command": "known-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "burdens": [100, 200, 500, 2000],
+        "max_samples_per_burden": 40,
+        "expert_names": ["plain_nnls", "musical"],
+        "random_seed": 20260516
+      }
+    },
+    {
+      "name": "insuff_sbs96_plain_musical",
+      "command": "catalog-insufficiency-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "removal_manifest": "results/paper/removal_manifests/sbs96.tsv",
+        "burdens": [200, 500],
+        "max_positive_per_signature": 6,
+        "max_negative_per_signature": 6,
+        "expert_names": ["plain_nnls", "musical"],
+        "random_seed": 20260516
+      }
+    }
+  ]
+}

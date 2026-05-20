@@ -1,0 +1,48 @@
+{
+  "suite_name": "paper_known_catalog_ablation_smoke",
+  "output_root": "results/paper/paper_known_catalog_ablation_smoke",
+  "steps": [
+    {
+      "name": "known_sbs96_ablation_all_experts",
+      "command": "known-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "burdens": [200],
+        "max_samples_per_burden": 3,
+        "expert_names": ["plain_nnls", "musical"],
+        "random_seed": 0
+      }
+    },
+    {
+      "name": "known_sbs96_ablation_no_musical",
+      "command": "known-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "burdens": [200],
+        "max_samples_per_burden": 3,
+        "expert_names": ["plain_nnls"],
+        "random_seed": 0
+      }
+    },
+    {
+      "name": "known_sbs96_ablation_no_plain_nnls",
+      "command": "known-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "burdens": [200],
+        "max_samples_per_burden": 3,
+        "expert_names": ["musical"],
+        "random_seed": 0
+      }
+    }
+  ]
+}

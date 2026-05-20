@@ -1,0 +1,57 @@
+{
+  "suite_name": "paper_catalog_insufficiency_ablation_smoke",
+  "output_root": "results/paper/paper_catalog_insufficiency_ablation_smoke",
+  "steps": [
+    {
+      "name": "insuff_sbs96_ablation_all_experts",
+      "command": "catalog-insufficiency-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "removed_signatures": ["SBS5", "SBS14"],
+        "removal_manifest": "results/paper/removal_manifests/sbs96.tsv",
+        "burdens": [200],
+        "max_positive_per_signature": 2,
+        "max_negative_per_signature": 2,
+        "expert_names": ["plain_nnls", "musical"],
+        "random_seed": 0
+      }
+    },
+    {
+      "name": "insuff_sbs96_ablation_no_musical",
+      "command": "catalog-insufficiency-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "removed_signatures": ["SBS5", "SBS14"],
+        "removal_manifest": "results/paper/removal_manifests/sbs96.tsv",
+        "burdens": [200],
+        "max_positive_per_signature": 2,
+        "max_negative_per_signature": 2,
+        "expert_names": ["plain_nnls"],
+        "random_seed": 0
+      }
+    },
+    {
+      "name": "insuff_sbs96_ablation_no_plain_nnls",
+      "command": "catalog-insufficiency-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "removed_signatures": ["SBS5", "SBS14"],
+        "removal_manifest": "results/paper/removal_manifests/sbs96.tsv",
+        "burdens": [200],
+        "max_positive_per_signature": 2,
+        "max_negative_per_signature": 2,
+        "expert_names": ["musical"],
+        "random_seed": 0
+      }
+    }
+  ]
+}

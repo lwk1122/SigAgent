@@ -1,0 +1,39 @@
+{
+  "suite_name": "paper_calibration_smoke",
+  "output_root": "results/paper/paper_calibration_smoke",
+  "steps": [
+    {
+      "name": "fit_confidence_sbs96_smoke",
+      "command": "fit-confidence",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "burdens": [200],
+        "max_samples_per_burden": 30,
+        "expert_names": ["plain_nnls", "musical"],
+        "assignment_f1_threshold": 0.3,
+        "calibration_fraction": 0.5,
+        "random_seed": 0,
+        "output_artifact": "{output_root}/artifacts/confidence_sbs96_plain_nnls_musical.json"
+      }
+    },
+    {
+      "name": "known_sbs96_calibration_smoke",
+      "command": "known-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "burdens": [200],
+        "max_samples_per_burden": 30,
+        "expert_names": ["plain_nnls", "musical"],
+        "confidence_artifact": "{output_root}/artifacts/confidence_sbs96_plain_nnls_musical.json",
+        "assignment_f1_threshold": 0.3,
+        "random_seed": 1
+      }
+    }
+  ]
+}

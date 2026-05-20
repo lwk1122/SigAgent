@@ -1,0 +1,20 @@
+{
+  "suite_name": "paper_known_catalog_smoke",
+  "output_root": "results/paper/paper_known_catalog_smoke",
+  "steps": [
+    {
+      "name": "known_sbs96_smoke",
+      "command": "known-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "burdens": [100, 500],
+        "max_samples_per_burden": 5,
+        "expert_names": ["plain_nnls"],
+        "random_seed": 0
+      }
+    }
+  ]
+}

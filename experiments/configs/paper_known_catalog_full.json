@@ -1,0 +1,94 @@
+{
+  "suite_name": "paper_known_catalog_full",
+  "output_root": "results/paper/paper_known_catalog_full",
+  "steps": [
+    {
+      "name": "fit_confidence_sbs96",
+      "command": "fit-confidence",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "burdens": [100, 200, 500, 2000, 50000],
+        "max_samples_per_burden": 100,
+        "random_seed": 0,
+        "output_artifact": "{output_root}/artifacts/confidence_sbs96.json"
+      }
+    },
+    {
+      "name": "known_sbs96_full",
+      "command": "known-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "burdens": [100, 200, 500, 2000, 50000],
+        "max_samples_per_burden": 100,
+        "confidence_artifact": "{output_root}/artifacts/confidence_sbs96.json",
+        "bootstrap_replicates": 100,
+        "random_seed": 0
+      }
+    },
+    {
+      "name": "fit_confidence_dbs78",
+      "command": "fit-confidence",
+      "args": {
+        "sample_source": "Data/test_dbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.DBS78.csv",
+        "exposure_source": "Data/test_dbs_exposures.csv",
+        "mutation_type": "DBS78",
+        "burdens": [100, 200, 500, 2000, 50000],
+        "max_samples_per_burden": 100,
+        "random_seed": 0,
+        "output_artifact": "{output_root}/artifacts/confidence_dbs78.json"
+      }
+    },
+    {
+      "name": "known_dbs78_full",
+      "command": "known-benchmark",
+      "args": {
+        "sample_source": "Data/test_dbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.DBS78.csv",
+        "exposure_source": "Data/test_dbs_exposures.csv",
+        "mutation_type": "DBS78",
+        "burdens": [100, 200, 500, 2000, 50000],
+        "max_samples_per_burden": 100,
+        "confidence_artifact": "{output_root}/artifacts/confidence_dbs78.json",
+        "bootstrap_replicates": 100,
+        "random_seed": 0
+      }
+    },
+    {
+      "name": "fit_confidence_id83",
+      "command": "fit-confidence",
+      "args": {
+        "sample_source": "Data/test_ID_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.ID.csv",
+        "exposure_source": "Data/test_ID_exposures.csv",
+        "mutation_type": "ID83",
+        "burdens": [100, 200, 500, 2000, 50000],
+        "max_samples_per_burden": 100,
+        "random_seed": 0,
+        "output_artifact": "{output_root}/artifacts/confidence_id83.json"
+      }
+    },
+    {
+      "name": "known_id83_full",
+      "command": "known-benchmark",
+      "args": {
+        "sample_source": "Data/test_ID_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.ID.csv",
+        "exposure_source": "Data/test_ID_exposures.csv",
+        "mutation_type": "ID83",
+        "burdens": [100, 200, 500, 2000, 50000],
+        "max_samples_per_burden": 100,
+        "confidence_artifact": "{output_root}/artifacts/confidence_id83.json",
+        "bootstrap_replicates": 100,
+        "random_seed": 0
+      }
+    }
+  ]
+}
+

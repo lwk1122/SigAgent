@@ -1,0 +1,41 @@
+{
+  "suite_name": "paper_catalog_insufficiency_manifest_smoke",
+  "output_root": "results/paper/paper_catalog_insufficiency_manifest_smoke",
+  "steps": [
+    {
+      "name": "fit_catalog_assessor_sbs96_manifest_smoke",
+      "command": "fit-catalog-assessor",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "burdens": [200],
+        "removal_manifest": "results/paper/removal_manifests/sbs96.tsv",
+        "max_positive_per_signature": 2,
+        "max_negative_per_signature": 2,
+        "expert_names": ["plain_nnls"],
+        "calibration_fraction": 0.0,
+        "random_seed": 0,
+        "output_artifact": "{output_root}/artifacts/catalog_assessor_sbs96_plain_nnls.json"
+      }
+    },
+    {
+      "name": "insuff_sbs96_manifest_smoke",
+      "command": "catalog-insufficiency-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "removal_manifest": "results/paper/removal_manifests/sbs96.tsv",
+        "burdens": [200],
+        "max_positive_per_signature": 2,
+        "max_negative_per_signature": 2,
+        "expert_names": ["plain_nnls"],
+        "catalog_assessor_artifact": "{output_root}/artifacts/catalog_assessor_sbs96_plain_nnls.json",
+        "random_seed": 0
+      }
+    }
+  ]
+}

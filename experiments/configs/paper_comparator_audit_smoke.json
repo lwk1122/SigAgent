@@ -1,0 +1,45 @@
+{
+  "suite_name": "paper_comparator_audit_smoke",
+  "output_root": "results/paper/comparator_audit_smoke",
+  "steps": [
+    {
+      "name": "make_toy_sbs96_fixtures",
+      "command": "release-smoke-fixtures",
+      "args": {
+        "output_dir": "{output_root}/fixtures",
+        "burden": 500,
+        "random_seed": 20260514
+      }
+    },
+    {
+      "name": "toy_sbs96_plain_musical_spa",
+      "command": "known-benchmark",
+      "args": {
+        "sample_source": "{output_root}/fixtures/toy_sbs96_samples.csv",
+        "signature_source": "{output_root}/fixtures/toy_sbs96_signatures.csv",
+        "exposure_source": "{output_root}/fixtures/toy_sbs96_exposures.csv",
+        "mutation_type": "SBS96",
+        "burdens": [100, 500],
+        "max_samples_per_burden": 3,
+        "expert_names": ["plain_nnls", "musical", "sigprofiler_assignment"],
+        "random_seed": 20260514
+      }
+    },
+    {
+      "name": "insuff_sbs96_plain_musical_spa_pilot",
+      "command": "catalog-insufficiency-benchmark",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "exposure_source": "Data/test_sbs_exposures.csv",
+        "mutation_type": "SBS96",
+        "removal_manifest": "results/paper/removal_manifests/sbs96.tsv",
+        "burdens": [200, 500],
+        "max_positive_per_signature": 4,
+        "max_negative_per_signature": 4,
+        "expert_names": ["plain_nnls", "musical", "sigprofiler_assignment"],
+        "random_seed": 20260514
+      }
+    }
+  ]
+}

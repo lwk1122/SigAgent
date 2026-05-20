@@ -1,0 +1,4 @@
+# Optional dependencies for full local expert wrappers.
+-r requirements.txt
+torch>=2.1
+seaborn>=0.12

@@ -1,0 +1,76 @@
+{
+  "suite_name": "pcawg_decision_reanalysis_120_20260516",
+  "output_root": "results/paper/pcawg_decision_reanalysis_120_20260516",
+  "steps": [
+    {
+      "name": "prepare_pcawg_sbs96_120",
+      "command": "download-public-sbs96",
+      "args": {
+        "raw_input": "results/paper/public_data/pcawg_sbs96_smoke/raw/WGS_PCAWG.96.csv",
+        "output_dir": "results/paper/public_data/pcawg_sbs96_120_20260516",
+        "max_samples": 120,
+        "selection_mode": "balanced-tumor-types"
+      }
+    },
+    {
+      "name": "catalog_without_sbs1_sbs5",
+      "command": "signature-catalog-variant",
+      "args": {
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "remove_signatures": ["SBS1", "SBS5"],
+        "output_path": "results/paper/public_data/pcawg_sbs96_120_20260516/signatures_sbs96_without_sbs1_sbs5.csv",
+        "manifest_path": "results/paper/public_data/pcawg_sbs96_120_20260516/signature_catalog_variant_manifest.tsv"
+      }
+    },
+    {
+      "name": "decision_pcawg_sbs96_full_catalog_120",
+      "command": "decision",
+      "args": {
+        "sample_source": "results/paper/public_data/pcawg_sbs96_120_20260516/samples_sbs96.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "mutation_type": "SBS96",
+        "expert_names": ["plain_nnls", "musical"],
+        "confidence_artifact": "results/paper/paper_calibration_smoke/artifacts/confidence_sbs96_plain_nnls_musical.json",
+        "catalog_assessor_artifact": "results/paper/paper_catalog_insufficiency_manifest_smoke/artifacts/catalog_assessor_sbs96_plain_nnls.json",
+        "run_label": "pcawg_sbs96_full_catalog_120"
+      }
+    },
+    {
+      "name": "decision_pcawg_sbs96_reduced_catalog_120",
+      "command": "decision",
+      "args": {
+        "sample_source": "results/paper/public_data/pcawg_sbs96_120_20260516/samples_sbs96.csv",
+        "signature_source": "results/paper/public_data/pcawg_sbs96_120_20260516/signatures_sbs96_without_sbs1_sbs5.csv",
+        "mutation_type": "SBS96",
+        "expert_names": ["plain_nnls", "musical"],
+        "confidence_artifact": "results/paper/paper_calibration_smoke/artifacts/confidence_sbs96_plain_nnls_musical.json",
+        "catalog_assessor_artifact": "results/paper/paper_catalog_insufficiency_manifest_smoke/artifacts/catalog_assessor_sbs96_plain_nnls.json",
+        "run_label": "pcawg_sbs96_reduced_catalog_120"
+      }
+    },
+    {
+      "name": "catalog_without_top_active_signatures",
+      "command": "real-data-removal-design",
+      "args": {
+        "decision_dir": "{output_root}/raw/decision_pcawg_sbs96_full_catalog_120",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "top_n": 4,
+        "output_path": "results/paper/public_data/pcawg_sbs96_120_20260516/signatures_sbs96_without_top_active.csv",
+        "manifest_path": "results/paper/public_data/pcawg_sbs96_120_20260516/active_signature_catalog_variant_manifest.tsv"
+      }
+    },
+    {
+      "name": "decision_pcawg_sbs96_active_reduced_catalog_120",
+      "command": "decision",
+      "args": {
+        "sample_source": "results/paper/public_data/pcawg_sbs96_120_20260516/samples_sbs96.csv",
+        "signature_source": "results/paper/public_data/pcawg_sbs96_120_20260516/signatures_sbs96_without_top_active.csv",
+        "mutation_type": "SBS96",
+        "expert_names": ["plain_nnls", "musical"],
+        "confidence_artifact": "results/paper/paper_calibration_smoke/artifacts/confidence_sbs96_plain_nnls_musical.json",
+        "catalog_assessor_artifact": "results/paper/paper_catalog_insufficiency_manifest_smoke/artifacts/catalog_assessor_sbs96_plain_nnls.json",
+        "run_label": "pcawg_sbs96_active_reduced_catalog_120"
+      }
+    }
+  ]
+}

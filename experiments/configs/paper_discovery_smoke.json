@@ -1,0 +1,39 @@
+{
+  "suite_name": "paper_discovery_smoke",
+  "output_root": "results/paper/paper_discovery_smoke",
+  "steps": [
+    {
+      "name": "decision_sbs96_discovery_smoke",
+      "command": "decision",
+      "args": {
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "mutation_type": "SBS96",
+        "sample_ids": ["SP.Syn.Myeloid..S.82", "SP.Syn.Skin..S.298", "SP.Syn.Kidney..S.124"],
+        "expert_names": ["plain_nnls", "musical"],
+        "confidence_artifact": "results/paper/paper_calibration_smoke/artifacts/confidence_sbs96_plain_nnls_musical.json",
+        "catalog_assessor_artifact": "results/paper/paper_catalog_insufficiency_manifest_smoke/artifacts/catalog_assessor_sbs96_plain_nnls.json",
+        "run_label": "discovery_smoke"
+      }
+    },
+    {
+      "name": "discovery_sbs96_smoke",
+      "command": "discovery-run",
+      "args": {
+        "experience_dir": "{output_root}/raw/decision_sbs96_discovery_smoke/experience",
+        "sample_source": "Data/test_sbs_catalog.csv",
+        "signature_source": "Data/ground.truth.syn.sigs.SBS96.csv",
+        "probability_threshold": 0.8,
+        "residual_structure_threshold": 0.45,
+        "mutation_count_threshold": 500,
+        "min_recurrence_count": 1,
+        "min_cluster_size": 1,
+        "min_records": 1,
+        "min_mean_residual_mass": 0.0,
+        "bootstrap_repeats": 2,
+        "disable_review_confirmation": true,
+        "run_label": "discovery_smoke"
+      }
+    }
+  ]
+}
